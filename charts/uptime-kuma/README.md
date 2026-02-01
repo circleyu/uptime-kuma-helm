@@ -1,6 +1,6 @@
 # uptime-kuma
 
-![Version: 2.24.0](https://img.shields.io/badge/Version-2.24.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.23.17](https://img.shields.io/badge/AppVersion-1.23.17-informational?style=flat-square)
+![Version: 2.25.0](https://img.shields.io/badge/Version-2.25.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.2](https://img.shields.io/badge/AppVersion-2.0.2-informational?style=flat-square)
 
 A self-hosted Monitoring tool like "Uptime-Robot".
 
@@ -21,6 +21,11 @@ A self-hosted Monitoring tool like "Uptime-Robot".
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mariadb | 23.2.2 |
+
+## Upgrade and MariaDB
+
+- **Upgrading from 1.x to 2.x:** Backup your data directory before upgrading and see the [Migration From v1 To v2](https://github.com/louislam/uptime-kuma/wiki/Migration-From-v1-To-v2) guide.
+- **MariaDB:** This chart deploys both Uptime-Kuma and MariaDB by default. You **must** set `mariadb.auth.password` and `mariadb.auth.rootPassword` when installing or upgrading (e.g. `--set mariadb.auth.password=... --set mariadb.auth.rootPassword=...` or via a custom values file).
 
 ## Values
 
@@ -43,7 +48,7 @@ A self-hosted Monitoring tool like "Uptime-Robot".
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"louislam/uptime-kuma"` |  |
-| image.tag | string | `"1.23.17-debian"` |  |
+| image.tag | string | `"2.0.2-debian"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/proxy-read-timeout" | string | `"3600"` |  |
 | ingress.annotations."nginx.ingress.kubernetes.io/proxy-send-timeout" | string | `"3600"` |  |
@@ -66,7 +71,7 @@ A self-hosted Monitoring tool like "Uptime-Robot".
 | mariadb.auth.password | string | `""` |  |
 | mariadb.auth.rootPassword | string | `""` |  |
 | mariadb.auth.username | string | `"uptime_kuma"` |  |
-| mariadb.enabled | bool | `false` |  |
+| mariadb.enabled | bool | `true` |  |
 | nameOverride | string | `""` |  |
 | namespaceOverride | string | `""` | A custom namespace to override the default namespace for the deployed resources. |
 | networkPolicy | object | `{"allowExternal":true,"egress":true,"enabled":false,"ingress":true,"namespaceSelector":{}}` | Create a NetworkPolicy |

@@ -6,7 +6,7 @@ image:
   repository: louislam/uptime-kuma
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.23.17-debian"
+  tag: "2.0.2-debian"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -168,13 +168,16 @@ strategy:
   type: RollingUpdate
 
 # Mariadb configurations
+# When enabled, one helm install deploys both Uptime-Kuma and MariaDB.
 mariadb:
-  enabled: false
+  enabled: true
   architecture: standalone
   auth:
     database: uptime_kuma
     username: uptime_kuma
+    # MUST set via --set mariadb.auth.password=... or custom values file
     password: ""
+    # MUST set via --set mariadb.auth.rootPassword=... or custom values file
     rootPassword: ""
 
 # External MariaDB database configuration
